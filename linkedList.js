@@ -1,51 +1,55 @@
 class Node {
-    constructor(value, next = null) {
-        this.data = value;
+    constructor(data = 0, next = null) {
+        this.data = data;
         this.next = next;
     }
 }
 class LinkedList {
-    constructor(value) {
+    constructor() {
         this.head = null;
-        this.tail = this.head;
+        this.tail = null;
         this.size = 0;
     }
-    //insert first node
-    insertFirst(value) {
+    push(data) {
+        let newNode = new Node(data);
         if (!this.head) {
-            this.head = new Node(value, this.head);
+            this.head = newNode;
             this.tail = this.head;
         } else {
-            const node = this.head;
-            this.head = new Node(value, node);
-            this.tail = node;
+            this.head.next = newNode;
+            this.tail = newNode;
         }
-        this.size = this.size + 1;
+        this.size++;
     }
-    //insert last node
-    insertLast(value) {
-        const node = new Node(value);
-        if (!this.head) {
-            this.head = node;
-            this.tail = node;
-        } else {
-            this.tail = node;
-        }
-    }
-    //print list data
-    printListData() {
+    pop() {
+        if (this.size == 0) return;
         let current = this.head;
-        while (current) {
-            console.log(current.data);
+        let previous;
+        while (current.next) {
+            previous = current;
             current = current.next;
+        }
+        previous.next = null;
+        this.tail = previous;
+        this.size--;
+    }
+    insert(data, index) {
+        if (index >= this.size) return -1;
+        let current = this.head;
+        let counter = 0;
+        while (counter < index) {
+            current
         }
     }
 }
-console.clear();
 const ll = new LinkedList();
-ll.insertFirst(2);
-ll.insertFirst(1);
-ll.insertLast(3);
+ll.push(1);
+ll.push(2);
+ll.push(3);
+ll.push(4);
+ll.push(5);
+ll.push(6);
+ll.push(7);
+ll.insert(8, 3)
+// ll.pop();
 console.log(ll);
-console.log("=========================================================");
-ll.printListData();
