@@ -3,21 +3,21 @@ class Node {
         this.data = data;
         this.next = null;
     }
-}
+};
 class LinkedList {
     constructor() {
         this.head = null;
         this.tail = null;
         this.size = 0;
     }
-    printData() {
+    pirntData() {
         let current = this.head;
         let arr = [];
         while (current) {
-            arr.push(current.data);
-            current = current.next
+            arr.push(current.data)
+            current = current.next;
         }
-        return arr;
+        return arr
     }
     append(data) {
         const node = new Node(data);
@@ -31,46 +31,43 @@ class LinkedList {
         this.size++;
     }
     prepend(data) {
-        if (this.size === 0) this.append(data);
-        else {
-            let current = this.head;
-            let node = new Node(data);
+        let node = new Node(data);
+        if (this.size === 0) {
             this.head = node;
-            this.head.next = current;
+            this.tail = this.head;
+        } else {
+            let pointer = this.head;
+            this.head = node;
+            this.head.next = pointer;
         }
         this.size++;
     }
     insertAt(index, data) {
-        if (this.size === 0) return;
-        let counter = 0;
+        if (this.size === 0 || this.size < index) return;
+        if (index === this.size) {
+            this.append(data)
+            return
+        }; // if someone is inserting at last index
+        if (index === 0) {
+            this.prepend
+            return
+        };
+        let node = new Node(data);
         let current = this.head;
         let previous;
+        let counter = 1;
         while (counter < index) {
             previous = current;
             current = current.next;
             counter++;
         }
-        previous.next = new Node(data);
+        previous.next = node;
         previous.next.next = current;
         this.size++;
-    }
-    removeAt(index) {
-        if (this.size === 0) return;
-        let counter = 0;
-        let current = this.head;
-        let previous;
-        while (counter < index) {
-            previous = current;
-            current = current.next;
-            counter++;
-        }
-        previous.next = current.next;
-        this.size--;
     }
     reverse() {
         let prev = null;
         let current = this.head;
-        this.tail = current;
         while (current) {
             let forwardRef = current.next;
             current.next = prev;
@@ -79,14 +76,16 @@ class LinkedList {
         }
         this.head = prev;
     }
-}
+};
 const ll = new LinkedList();
 ll.append(1);
 ll.append(2);
 ll.append(3);
 ll.prepend(0);
-ll.insertAt(2, 54);
-ll.removeAt(2);
-ll.reverse();
-console.log(ll.printData());
+ll.prepend(9);
+ll.insertAt(2, 99);
+ll.insertAt(5, 90);
+ll.insertAt(7, 100);
+ll.reverse()
+console.log(ll.pirntData());
 console.log(ll);
