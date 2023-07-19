@@ -5,28 +5,29 @@ class Node {
         this.next = next;
     }
 }
-
 class DoubleLinkedList {
     constructor() {
         this.head = null;
         this.tail = null;
         this.size = 0;
     }
-    insertAtFirst(data) {
-        this.head = new Node(data);
-        this.tail = this.head;
-        this.size++;
-    }
-    insertSecond(data) {
-        const node = new Node(data);
-        node.previous = this.head;
-        this.head.next = node;
-        this.tail = this.head.next;
+    append(data) {
+        let node = new Node(data);
+        if (!this.head) {
+            this.head = node;
+            this.tail = this.head;
+        } else {
+            this.tail.next = node;
+            let pointer = this.tail;
+            this.tail = node;
+            this.tail.previous = pointer;
+        }
         this.size++;
     }
 }
 
 const dll = new DoubleLinkedList();
-dll.insertAtFirst(3);
-dll.insertSecond(4);
+dll.append(1);
+dll.append(2);
+dll.append(3);
 console.log(dll);

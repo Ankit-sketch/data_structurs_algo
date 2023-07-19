@@ -1,7 +1,7 @@
 const arr = [423, 23, 4, 34, 34, 34, 3, 423, 423, 423, 423, 4234234];
 let end = arr.length - 1;
 function mergeSort(arr, start, end) {
-    if (start >= end) return
+    if (start >= end) return;
     let mid = parseInt((end + start) / 2);
     mergeSort(arr, start, mid);
     mergeSort(arr, mid + 1, end);

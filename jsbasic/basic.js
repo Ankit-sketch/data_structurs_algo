@@ -1,7 +1,8 @@
-console.log(person);
+let a = {
+    val: 1
+}
+let pointer = a;
 
-person = 'kk'
+pointer.next = 2;
 
-person = 'ankit';
-
-console.log(person);
+console.log(a)
